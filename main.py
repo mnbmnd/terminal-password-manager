@@ -34,32 +34,13 @@ def getUserPassword():
 def passwordMode():
     mode = int(input("Answer: "))
     return mode
- 
- # TODO: Change function name to something more suitable
-# def passwordCharLength(mode):
-#     print("How many characters would you like your password to be? (Enter a number from 8-32 inclusive)")     
-#     length = int(input("Answer: "))
-#     while (length < 8) | (length > 32):
-#         print("Please enter a number between 8 and 32 (inclusive) to continue!")
-#         print()
-#         length = int(input("Answer: "))
-#     return length
-
-# def passphraseNumWords(mode):
-#     print("How many words would you like your passphrase to be? (Enter a number from 4-8 inclusive)")
-#     numWords = int(input("Answer: "))
-#     while (numWords < 4) | (numWords > 8):
-#         print("Please enter a number between 4 and 8 (inclusive) to continue!")
-#         print()
-#         numWords = int(input("Answer: "))
-#     return numWords
 
 def getGeneratedPassword(mode):
     generatedPassword = password_generator.generatePassword(mode)
     return generatedPassword
 
-# def displayPasswordEntropy():
-#     print("Entropy: {:.1f}".format(entropy.getEntropy(getUserPassword())))
+def displayPasswordEntropy():
+     print("Entropy: {:.1f}".format(entropy.getEntropy(getUserPassword())))
     
 def displayTimeToCrack():
     print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(getUserPassword())))
@@ -71,10 +52,9 @@ def passwordCheckerMenu():
     print("Password Strength Checker 📊")
     print("Details...")
     print()
-    # displayPasswordEntropy()
+    displayPasswordEntropy()
     print()
     displayTimeToCrack()
-    # TODO: Add a section detailing what this password checker does and references to pass entropy
 
 def passwordGeneratorMenu():
     print("")
@@ -91,9 +71,14 @@ def passwordGeneratorMenu():
     print()
     # TODO: Add a 3rd option as 3. Random String (Alphanumeric + Symbols)
     displayGeneratedPassword(passwordMode())
+    print("Select an option to continue:")
+    print("1. Check your new generated password's strength")
+    print("2. Generate a new password")
+    print("3. Quit")
     
         
 def displayMenu():
+    # Change up this design (maybe change project name)
     print("=================================================================================================================================================================================================")
     print("=================================================================================================================================================================================================")
     print(r" ▗▄▄▖  ▗▄▖  ▗▄▄▖ ▗▄▄▖▗▖ ▗▖ ▗▄▖ ▗▄▄▖ ▗▄▄▄      ▗▄▄▖▗▄▄▄▖▗▄▄▖ ▗▄▄▄▖▗▖  ▗▖ ▗▄▄▖▗▄▄▄▖▗▖ ▗▖     ▗▄▄▖▗▖ ▗▖▗▄▄▄▖ ▗▄▄▖▗▖ ▗▖▗▄▄▄▖▗▄▄▖      ▗▄▖ ▗▖  ▗▖▗▄▄▄      ▗▄▄▖▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▖  ▗▄▖▗▄▄▄▖▗▄▖ ▗▄▄▖ ")

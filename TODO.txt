@@ -17,10 +17,10 @@
 # START
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-1. Add option to use in terminal or GUI (Tkinter)
-2. Add reference to english-words repo
-3. Fix length bug in the password Generator
-4. Add an option to go back to the starting menu
+1. Add option to use in terminal or GUI (Tkinter) |
+2. Add reference to english-words repo |
+3. Fix length bug in the password Generator | Done
+4. Add an option to go back to the starting menu |
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # END
