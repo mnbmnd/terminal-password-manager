@@ -9,6 +9,10 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 import entropy
 import password_generator
+import os
+
+def clear():
+    os.system("cls" if os.name == "nt" else "clear")
 
 def optionMenu():
     print("Choose an option to continue:")
@@ -16,23 +20,22 @@ def optionMenu():
     print("2. Check password strength")
     print("3. Quit")
     option = int(input("Answer: "))
+    clear()
     if option == 1:
         passwordGeneratorMenu()
     elif option == 2:
         passwordCheckerMenu()
-    else:
-        print("Have a wonderful day 👋")
 
 def getUserPassword():
     userPassword = input("Please enter your password: ")
     return userPassword
 
-def passwordMode():
-    mode = int(input("Answer: "))
-    return mode
+def passwordType():
+    passwordType = int(input("Answer: "))
+    return passwordType
 
-def generateNewPassword(mode):
-    generatedPassword = password_generator.generatePassword(mode)
+def generateNewPassword(passwordType):
+    generatedPassword = password_generator.generatePassword(passwordType)
     return generatedPassword
 
 def displayPasswordEntropy(generatedPassword = None):
@@ -47,12 +50,12 @@ def displayTimeToCrack(generatedPassword = None):
     else:
         print("Time to crack (in years): {:.1f}".format(entropy.getTimeToCrack(generatedPassword)))
 
-def getGeneratedPassword(mode):
-    generatedPassword = generateNewPassword(mode)
+def getGeneratedPassword(passwordType):
+    generatedPassword = generateNewPassword(passwordType)
     return generatedPassword
     
-def displayGeneratedPassword(mode):
-    generatedPassword = getGeneratedPassword(mode)
+def displayGeneratedPassword(passwordType):
+    generatedPassword = getGeneratedPassword(passwordType)
     print("Your new password is: " + generatedPassword)
     displayTimeToCrack(generatedPassword)
     displayPasswordEntropy(generatedPassword)
@@ -71,9 +74,9 @@ def passwordGeneratorMenu():
     print("")
     print("=" * 18)
     print("Password Generator")
-    print("Please answer the questions below to generate a password")
+    section("Overview")
     print()
-    print("What kind of password you would like? (Enter '1' or '2')")
+    print("Choose your password type")
     print()
     print("1. Passphrase (Easier to remember)")
     print("Example: swell posing gruffly slander onto")
@@ -82,7 +85,7 @@ def passwordGeneratorMenu():
     print("Example: a9Fq7XrL2mP8ZKcE")
     print()
     # TODO: Add a 3rd option as 3. Random String (Alphanumeric + Symbols)
-    displayGeneratedPassword(passwordMode())
+    displayGeneratedPassword(passwordType())
     print()
     optionMenu()
 
@@ -90,12 +93,16 @@ def section(title: str):
     print()
     print(f"[ {title} ]")
 
-def displayMenu():
+def splash():
     print()
     print(r"┏━┓┏━┓┏━┓┏━┓╻ ╻┏━┓┏━┓╺┳┓   ┏━╸┏━╸┏┓╻┏━╸┏━┓┏━┓╺┳╸┏━┓┏━┓")
     print(r"┣━┛┣━┫┗━┓┗━┓┃╻┃┃ ┃┣┳┛ ┃┃   ┃╺┓┣╸ ┃┗┫┣╸ ┣┳┛┣━┫ ┃ ┃ ┃┣┳┛")
     print(r"╹  ╹ ╹┗━┛┗━┛┗┻┛┗━┛╹┗╸╺┻┛   ┗━┛┗━╸╹ ╹┗━╸╹┗╸╹ ╹ ╹ ┗━┛╹┗╸")
     print()
+    input("Press enter to continue...")
+    clear()
+    
+def mainMenu():
     section("Overview")
     print(
         "This project is a terminal-based password utility that helps \n"
@@ -112,7 +119,8 @@ def displayMenu():
     optionMenu()
 
 if __name__ == "__main__":
-    displayMenu()
+    splash()
+    mainMenu()
         
 # end main
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

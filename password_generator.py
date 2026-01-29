@@ -31,21 +31,22 @@ def generateString(length):
     return password
 
 def generatePassword(mode):
+    print()
     if mode == 1:
-        print("How many words would you like your passphrase to be? (Enter a number from 4-8 inclusive)")
+        print("Choose the number of words for your passphrase (4-8 inclusive)")
         numWords = int(input("Answer: "))
         while (numWords < 4) | (numWords > 8):
-            print("Please enter a number between 4 and 8 (inclusive) to continue!")
+            print("Enter a valid number!")
             print()
             numWords = int(input("Answer: "))
         passphrase = generatePassphrase(numWords) 
         return passphrase
     
     elif mode == 2:
-        print("How many characters would you like your password to be? (Enter a number from 8-32 inclusive)") 
+        print("Choose the number of characters for your password (8-32 inclusive)") 
         length = int(input("Answer: "))
         while (length < 8) | (length > 32):
-            print("Please enter a number between 8 and 32 (inclusive) to continue!")
+            print("Enter a valid number")
             print()
             length = int(input("Answer: "))
         stringPass = generateString(length)
