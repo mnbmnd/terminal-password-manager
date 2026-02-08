@@ -9,12 +9,8 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 import entropy
 import password_generator
+from system import clear_screen
 import getpass
-import subprocess
-
-
-def clear():
-    subprocess.run(["clear"])
 
 
 def optionMenu():
@@ -23,7 +19,7 @@ def optionMenu():
     print("2. Check password strength")
     print("3. Quit")
     option = int(input("Answer: "))
-    clear()
+    clear_screen()
     if option == 1:
         passwordGeneratorMenu()
     elif option == 2:
@@ -47,9 +43,8 @@ def generateNewPassword(passwordType):
 
 
 def displayPasswordStrength(generatedPassword=None):
-    if generatedPassword == None:
+    if generatedPassword is None:
         userPassword = getUserPassword()
-        # revealPassword(userPassword)
         print("Entropy: {:.1f}".format(entropy.getEntropy(userPassword)))
         print(
             "Time to crack (in years): {:.1f}".format(
@@ -57,7 +52,6 @@ def displayPasswordStrength(generatedPassword=None):
             )
         )
     else:
-        # revealPassword(generatedPassword)
         print("Entropy: {:.1f}".format(entropy.getEntropy(generatedPassword)))
         print(
             "Time to crack (in years): {:.1f}".format(
@@ -148,7 +142,7 @@ def splash():
     print(r"╹  ╹ ╹┗━┛┗━┛┗┻┛┗━┛╹┗╸╺┻┛   ╹ ╹╹ ╹╹ ╹╹ ╹┗━┛┗━╸╹┗╸")
     print()
     input("Press enter to continue...")
-    clear()
+    clear_screen()
 
 
 def mainMenu():
