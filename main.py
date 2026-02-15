@@ -13,8 +13,7 @@ import password_generator
 import system
 import authentication
 import storage
-import getpass 
-
+import getpass
 
 # Sets the master password
 def create_master_credentials():
@@ -98,7 +97,7 @@ def quit_confirm(state):
 def login_menu():
     print("=" * 80)
     section("Login Menu")
-    loginPassword = input("Enter your master password to continue:")
+    loginPassword = get_user_password()
     success = authentication.authenticate(loginPassword)
     if success:
         print("Login Successful")
@@ -121,6 +120,7 @@ def credentials_menu():
         masterCredentials = create_master_credentials()
         store_master_credentials(masterCredentials)
     elif option == 2:
+        system.clear_screen()
         login_menu()
     elif option == 3:
         quit_confirm(1)
