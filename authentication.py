@@ -11,8 +11,26 @@ import getpass
 import encrypt
 import system
 import json
+import getpass
+import storage
 from pathlib import Path
 
+
+# Gets the user's inputted password
+def get_user_password():
+    userPassword = getpass.getpass("Enter your password to continue: ")
+    
+    return userPassword
+
+# Sets the master password
+def create_master_credentials():
+    masterCredentials = set_master_credentials()
+    
+    return masterCredentials
+
+# Stores the master's username, password salt, and password hash
+def store_master_credentials(masterCredentials):
+    storage.save_master_credentials(masterCredentials[0], masterCredentials[1], masterCredentials[2])
 
 def has_master_credentials():
     try:
