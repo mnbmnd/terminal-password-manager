@@ -10,10 +10,28 @@
 import getpass
 import encrypt
 import system
+import json
+from pathlib import Path
+
+
+def authenticate(loginPassword):
+    hashedLoginPass = hash_login_password(loginPassword)
+    masterCredentials = get_master_credentials()
+    if hashedLoginPass == masterCredentials['hash']:
+        return True
+    else:
+        return False
+
+def hash_login_password(loginPassword):
+    masterCredentials = get_master_credentials()
+    salt = bytes.fromhex(masterCredentials['salt']) # Convert the hex string back to bytes
+    return encrypt.generate_hash(loginPassword, salt)
 
 
 def get_master_credentials():
-    pass
+    master_file = Path.home() / ".password_manager/master.json"
+    with open(master_file, "r") as f:
+        return json.load(f)
 
 
 def set_master_credentials():
@@ -42,7 +60,8 @@ def set_master_credentials():
     if attemptsRemaining == 0:
         print()
         print("You are out of attempts")
-        system.exit_program()
+        print()
+        print("What would you like to do?")
     
     input("Press enter to continue to the main menu")
     system.clear_screen()
@@ -50,6 +69,6 @@ def set_master_credentials():
     salt = encrypt.generate_salt()
     passwordHash = encrypt.generate_hash(password, salt)
     
-    return [username, salt.hex(), passwordHash]
+    return [username, salt.hex(), passwordHash] # Convert the salt from bytes to hex string
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
