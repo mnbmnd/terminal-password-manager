@@ -14,6 +14,14 @@ import json
 from pathlib import Path
 
 
+def has_master_credentials():
+    try:
+        masterCredentials = get_master_credentials()
+        if 'hash' in masterCredentials and 'salt' in masterCredentials:
+            return True
+    except:
+        return False
+    
 def authenticate(loginPassword):
     hashedLoginPass = hash_login_password(loginPassword)
     masterCredentials = get_master_credentials()
