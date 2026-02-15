@@ -33,6 +33,7 @@ def set_master_credentials():
         
         if password == passwordConfirm:
             print("Setup complete")
+            print("Press enter to continue...")
             matching = True
         else:
             print("Passwords do not match!")
@@ -40,6 +41,7 @@ def set_master_credentials():
 
     if attemptsRemaining == 0:
         print("You are out of attempts")
+        print("Press enter to continue...")
         return None
     
     salt = encrypt.generate_salt()

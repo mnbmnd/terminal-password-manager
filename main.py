@@ -14,7 +14,7 @@ import authentication
 import storage
 import getpass
 
-
+# The main option menu
 def optionMenu():
     print("Choose an option to continue:")
     print("1. Generate a new password")
@@ -29,26 +29,20 @@ def optionMenu():
     elif option == 2:
         passwordCheckerMenu()
 
-
+# Gets the user's inputted password
 def getUserPassword():
     userPassword = getpass.getpass("Enter your password to continue: ")
     
     return userPassword
 
-
+# Gets user's option to generate either a passphrase or alphanumeric password
 def passwordType():
     passwordType = int(input("Answer: "))
     print()
     
     return passwordType
 
-
-def generateNewPassword(passwordType):
-    generatedPassword = password_generator.generatePassword(passwordType)
-    
-    return generatedPassword
-
-
+# displays the password strength of an inputted password
 def displayPasswordStrength(generatedPassword=None):
     if generatedPassword is None:
         userPassword = getUserPassword()
@@ -72,20 +66,20 @@ def displayPasswordStrength(generatedPassword=None):
         "https://auth0.com/blog/defending-against-password-cracking-understanding-the-math/"
     )
 
-
+# Gets the newly generated password
 def getGeneratedPassword(passwordType):
-    generatedPassword = generateNewPassword(passwordType)
+    generatedPassword = password_generator.generatePassword(passwordType)
     
     return generatedPassword
 
-
+# Displays the generated password back to the user
 def displayGeneratedPassword(passwordType):
     generatedPassword = getGeneratedPassword(passwordType)
     
     print("Your new password is: ", generatedPassword)
     displayPasswordStrength(generatedPassword)
 
-
+# Displays the password checker menu
 def passwordCheckerMenu():
     print()
     print("=" * 18)
@@ -114,7 +108,7 @@ def passwordCheckerMenu():
     print()
     optionMenu()
 
-
+# Displays the password generator menu
 def passwordGeneratorMenu():
     print("")
     print("=" * 18)
@@ -137,44 +131,38 @@ def passwordGeneratorMenu():
     print()
     displayGeneratedPassword(passwordType())
     print()
-    # optionMenu()
 
-
+# Sections formatter
 def section(title: str):
     print()
     print(f"[ {title} ]")
 
-
+# Splash screen art (First screen that shows)
 def splash():
     print()
-    print(r"┏━┓┏━┓┏━┓┏━┓╻ ╻┏━┓┏━┓╺┳┓   ┏┳┓┏━┓┏┓╻┏━┓┏━╸┏━╸┏━┓")
-    print(r"┣━┛┣━┫┗━┓┗━┓┃╻┃┃ ┃┣┳┛ ┃┃   ┃┃┃┣━┫┃┗┫┣━┫┃╺┓┣╸ ┣┳┛")
-    print(r"╹  ╹ ╹┗━┛┗━┛┗┻┛┗━┛╹┗╸╺┻┛   ╹ ╹╹ ╹╹ ╹╹ ╹┗━┛┗━╸╹┗╸")
+    print("Password Manager")
     print()
     input("Press enter to continue...")
     system.clear_screen()
 
-
+# The main menu, shows after splash screen
 def mainMenu():
     section("Overview")
     print(
         "This project is a terminal-based password utility that helps\nyou both generate strong passwords and evaluate existing ones,\n"
         "it is designed to be simple to use, transparent in how it works,\nand focused on real-world security rather than gimmicks.\n"
     )
-    print("To get started, please set up or enter your credentials\n")
-    # print(
-    #     "Run the program in your terminal and choose between generating\na new password or checking the strength\n"
-    #     "of an existing one. Each mode is interactive and guides\nyou through the available options."
-    # )
+    print("To get started, choose an option below:\n")
+    print("1. Setup/update your master password")
+    print("2. Login with your master password")
     print()
     masterCredentials = authentication.set_master_credentials()
     storage.save_master_credentials(masterCredentials[0], masterCredentials[1], masterCredentials[2])
     optionMenu()
 
-
+# Main
 if __name__ == "__main__":
     splash()
     mainMenu()
-
-# end main
+# END_MAIN
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
