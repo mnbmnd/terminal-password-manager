@@ -9,6 +9,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 import getpass
 import encrypt
+import system
 
 
 def get_master_credentials():
@@ -32,17 +33,17 @@ def set_master_credentials():
         passwordConfirm = getpass.getpass(prompt="Confirm password\n")
         
         if password == passwordConfirm:
-            print("Setup complete")
-            print("Press enter to continue...")
+            print("Setup successfully completed!")
             matching = True
         else:
-            print("Passwords do not match!")
+            print("Your passwords do not match!")
             attemptsRemaining -= 1
-
+    
     if attemptsRemaining == 0:
         print("You are out of attempts")
-        print("Press enter to continue...")
-        return None
+    
+    input("Press enter to continue to the main menu")
+    system.clear_screen()
     
     salt = encrypt.generate_salt()
     passwordHash = encrypt.generate_hash(password, salt)
