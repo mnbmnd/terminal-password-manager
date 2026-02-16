@@ -87,28 +87,30 @@ def main_menu():
         passcheck_menu()
     elif option == 3:
         system.clear_screen()
-        print("Enter 0 to go back or 1 to confirm\n")
+        print("Are you sure you would like to exit?")
+        print("└► Enter 0 to go back to main menu")
+        print("└► Enter 1 to confirm\n")
         confirmed = int(input("Ans: "))
         if confirmed:
             system.exit()
         else:
             system.clear_screen()
             main_menu()
-    
+
 
 def passgen_menu():
-    print("Passgen")
-    section("Description")
+    section("Passgen")
     
-    print("\nPassgen generates new passwords for you using secure randomness.\n")
+    print("\nPassgen generates new passwords for you using secure randomness\n")
    
-    print("1. Start Passgen")
+    print("1. Start Generator")
     print("2. Go back to main menu\n")
+    
     passgenChoice = int(input("Ans: "))
     
     if passgenChoice == 1:
         section_cutter()
-        print("Passgen Started\n")
+        print("Generator Started\n")
         # \033[1m\033[0m makes text bold
         print("What would you like to generate?\n")
         print(
@@ -125,56 +127,32 @@ def passgen_menu():
         generatedPassword = passgen.generatePassword(passwordType)
         
         print("Generated password:\033[1m", generatedPassword, "\033[0m")
-        # display_pass_strength(generatedPassword)
-    else:
-        system.clear_screen()
-        main_menu()
-
-    
-    
-
-
-# displays the password strength of an inputted password
-def display_pass_strength(generatedPassword=None):
-    if generatedPassword is None:
-        userPassword = getpass.getpass("Password: ")
-
-        print("Entropy: {:.1f}".format(passcheck.getEntropy(userPassword)))
-    else:
-        print("Entropy: {:.1f}".format(passcheck.getEntropy(generatedPassword)))
-    print()
-    print("Learn more: "
-        "https://auth0.com/blog/defending-against-password-cracking-understanding-the-math/"
-    )
+        print("Entropy: {:.1f}\n".format(passcheck.getEntropy(generatedPassword)))
+        
+        input("Press enter to go back to main menu...")
+        
+    system.clear_screen()
+    main_menu()
 
 
 def passcheck_menu():
-    print("Password Strength Checker")
-    section("Description")
-    print(
-        "\nThe Password Checker analyzes a password and estimates how secure \n"
-        "it is against common attack methods.\n"
-    )
-
-    print("It measures:")
-    print(
-        " 1. Password entropy – a way of quantifying how unpredictable a password \n"
-        "is based on its length and the characters used."
-    )
-    print(
-        " 2. Time to crack – an estimate of how long it would \n"
-        "take to brute-force the password assuming modern hardware and realistic attack speeds.\n"
-    )
-
-    print(
-        "Higher entropy generally means more possible combinations, which increases the \n"
-        "time required to crack the password. The checker uses this \n"
-        "information to give a practical sense of strength rather than \n"
-        "a simple “weak/strong” label.\n"
-    )
-
-    display_pass_strength()
-    print()
+    section("Passcheck")
+    
+    print("\nPasscheck evaluates how long it would take to crack your password in years\n")
+    
+    print("1. Start Checker")
+    print("2. Go back to main menu\n")
+    
+    passcheckChoice = int(input("Ans: "))
+    
+    if passcheckChoice == 1:
+        section_cutter()
+        print("Checker Started\n")
+        password = input("Enter your password: ")
+        print("Entropy: {:.1f}\n".format(passcheck.getEntropy(password)))
+        
+        input("Press enter to go back to main menu...")
+    system.clear_screen()
     main_menu()
     
 
