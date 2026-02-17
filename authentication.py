@@ -13,7 +13,6 @@ from pathlib import Path
 
 import encrypt
 import storage
-import system
 
 
 def has_master_credentials():
