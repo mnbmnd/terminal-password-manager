@@ -134,7 +134,8 @@ def passgen_menu():
         generatedPassword = passgen.generatePassword(passwordType)
         
         print("Generated password:\033[1m", generatedPassword, "\033[0m")
-        print("Entropy: {:.1f}\n".format(passcheck.getEntropy(generatedPassword)))
+        print("Entropy: {:.1f}".format(passcheck.get_entropy(generatedPassword)))
+        print("Strength Level: ", passcheck.get_strength_level(generatedPassword), "\n")
         
         input("Press enter to go back to main menu...")
         
@@ -156,7 +157,8 @@ def passcheck_menu():
         section_cutter()
         print("Checker Started\n")
         password = input("Enter your password: ")
-        print("Entropy: {:.1f}\n".format(passcheck.getEntropy(password)))
+        print("Entropy: {:.1f}".format(passcheck.get_entropy(password)))
+        print("Strength Level: ", passcheck.get_strength_level(password), "\n")
         
         input("Press enter to go back to main menu...")
     system.clear_screen()

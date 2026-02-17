@@ -21,94 +21,103 @@ GUESSES_PER_SEC = 1e5
 SECONDS_PER_YEAR = 6.308 * (10**7)
 
 
-def getSize(password):
-    return len(password)
-
-
-def getUppercaseCount(password):
+def get_uppercase_count(password):
     upperCount = 0
     for i in password:
         if i.isupper():
             upperCount += 1
+            
     return upperCount
 
 
-def getLowercaseCount(password):
+def get_lowercase_count(password):
     lowerCount = 0
     for i in password:
         if i.islower():
             lowerCount += 1
+            
     return lowerCount
 
 
-def getNumericCount(password):
+def get_numeric_count(password):
     numericCount = 0
     for i in password:
         if i.isnumeric():
             numericCount += 1
+            
     return numericCount
 
 
-def getSymbolsCount(password):
+def get_symbols_count(password):
     symbols = list(string.punctuation)
     symbolsCount = 0
     for i in password:
         if i in symbols:
             symbolsCount += 1
+            
     return symbolsCount
 
 
-def getSpaceCount(password):
+def get_space_count(password):
     spaceCount = 0
     for i in password:
         if i == " ":
             spaceCount += 1
+            
     return spaceCount
 
 
-def getCharactersAvailable(password):
+def get_character_count(password):
     characters = 0
-    if getLowercaseCount(password):
+    if get_lowercase_count(password):
         characters += LOWERCASE
 
-    if getUppercaseCount(password):
+    if get_uppercase_count(password):
         characters += UPPERCASE
 
-    if getNumericCount(password):
+    if get_numeric_count(password):
         characters += NUMERICAL
 
-    if getSymbolsCount(password):
+    if get_symbols_count(password):
         characters += SYMBOLS
 
-    if getSpaceCount(password):
+    if get_space_count(password):
         characters += SPACE
 
     return characters
 
 
-def getEntropy(password):
-    passwordLength = getSize(password)
-    r = getCharactersAvailable(password)
+def get_entropy(password):
+    passwordLength = len(password)
+    r = get_character_count(password)
     entropy = math.log2(r**passwordLength)
 
     return entropy
 
 
-def getSampleSpaceSize(password):
-    charactersAvailable = getCharactersAvailable(password)
-    n = getSize(password)
+def sample_space_size(password):
+    charactersAvailable = get_character_count(password)
+    n = len(password)
     sampleSpaceSize = charactersAvailable**n
+    
     return sampleSpaceSize
 
 
-# def getAttemptsPerSecond():
-#     # function expands on attempts per second
-#     pass
+def get_strength_level(password):
+    entropy = get_entropy(password)
+    
+    strengthLevels = [
+        (28, "Very Weak 🟥"),
+        (36, "Weak 🟧"),
+        (60, "Medium 🟨"),
+        (128, "Strong 🟩"),
+        (float('inf'), "Very Strong 🟦")
+    ]
+    
+    for threshold, label in strengthLevels:
+        if entropy < threshold:
+            return label
 
 
-# def getTimeToCrack(password):
-#     sampleSpace = getSampleSpaceSize(password)
-#     timeToCrack = sampleSpace / (GUESSES_PER_SEC * SECONDS_PER_YEAR)
-#     return timeToCrack
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # mnbmnd
