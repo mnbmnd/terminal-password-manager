@@ -11,6 +11,8 @@ import string
 import secrets
 from pathlib import Path
 
+import menus
+
 BASE_DIR = Path(__file__).parent
 file_path = BASE_DIR / "words_alpha.txt"  # Dictionary to take words from
 
@@ -19,11 +21,13 @@ def generate_passphrase(numWords):
     with open(file_path) as f:
         words = [word.strip() for word in f]
         password = " ".join(secrets.choice(words) for i in range(numWords))
+        
     return password
 
 
 def generate_string(length):
     characters = string.ascii_letters + string.digits + string.punctuation
+    
     while True:
         password = "".join(secrets.choice(characters) for i in range(int(length)))
         if (
@@ -32,33 +36,24 @@ def generate_string(length):
             and sum(c.isdigit() for c in password) >= 3
         ):
             break
+        
     return password
 
 
 def password_generator(mode):
-    """Generates and returns a password in the form of either a string or passphrase"""
-    print()
-    if mode == 1:
-        print("Choose the number of words for your passphrase (4-8 inclusive)")
-        numWords = int(input("Answer: "))
-        print()
-        while (numWords < 4) | (numWords > 8):
-            print("Enter a valid number!")
-            print()
-            numWords = int(input("Answer: "))
-            print()
+    if mode == 1:        
+        print("\nChoose the number of words for your passphrase (4-8 inclusive)")
+        
+        numWords = menus.get_user_choice()            
         passphrase = generate_passphrase(numWords)  # Passphrase generator
+        
         return passphrase
     elif mode == 2:
-        print("Choose the number of characters for your password (8-32 inclusive)")
-        length = int(input("Answer: "))
-        print()
-        while (length < 8) | (length > 32):
-            print("Enter a valid number")
-            print()
-            length = int(input("Answer: "))
-            print()
+        print("\nChoose the number of characters for your password (8-32 inclusive)")
+        
+        length = menus.get_user_choice()            
         stringPass = generate_string(length)  # String generator
+        
         return stringPass
 
 

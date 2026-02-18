@@ -20,6 +20,13 @@ BCRYPT_COST = 12
 GUESSES_PER_SEC = 1e5
 SECONDS_PER_YEAR = 6.308 * (10**7)
 
+# Ranges of strength based on password entropy bits
+VERY_WEAK_ENTROPY = 28 # 0=<28
+WEAK_ENTROPY = 36 # 28=<36
+MEDIUM_ENTROPY = 60 # 36=<60
+STRONG_ENTROPY = 128 # 60=<128
+VERY_STRONG_ENTROPY = float("inf") # >=128
+
 
 def get_uppercase_count(password):
     upperCount = 0
@@ -96,25 +103,16 @@ def get_entropy(password):
     return entropy
 
 
-def sample_space_size(password):
-    """Return the sample space size of the password"""
-    charactersAvailable = get_character_count(password)
-    n = len(password)
-    sampleSpaceSize = charactersAvailable**n
-
-    return sampleSpaceSize
-
-
 # Corresponding strength levels for entropy ranges
 def get_strength_level(password):
     entropy = get_entropy(password)
 
     strengthLevels = [
-        (28, "Very Weak 🟥"),
-        (36, "Weak 🟧"),
-        (60, "Medium 🟨"),
-        (128, "Strong 🟩"),
-        (float("inf"), "Very Strong 🟦"),
+        (VERY_WEAK_ENTROPY, "Very Weak 🟥"),
+        (WEAK_ENTROPY, "Weak 🟧"),
+        (MEDIUM_ENTROPY, "Medium 🟨"),
+        (STRONG_ENTROPY, "Strong 🟩"),
+        (VERY_STRONG_ENTROPY, "Very Strong 🟦"),
     ]
 
     for threshold, label in strengthLevels:

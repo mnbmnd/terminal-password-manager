@@ -60,17 +60,17 @@ def get_master_credentials():
 # Creates the master credentials via the setup screen, and saves them to json
 def set_master_credentials():
     username = getpass.getuser()
-    password = getpass.getpass(prompt="Enter a master password\n")
+    password = getpass.getpass(prompt="\nEnter a master password")
     matching = False
 
     while not matching:
-        passwordConfirm = getpass.getpass(prompt="Confirm password\n")
+        passwordConfirm = getpass.getpass(prompt="\nConfirm password")
 
         if password == passwordConfirm:
             print("\033[1mSetup complete\033[0m")
             matching = True
         else:
-            print("Your passwords do not match, try again!\n")
+            print("\nYour passwords do not match, try again!")
 
     salt = encrypt.generate_salt()
     passwordHash = encrypt.generate_hash(password, salt)
