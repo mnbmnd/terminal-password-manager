@@ -6,15 +6,13 @@
 **Github Profile**: https://github.com/mnbmnd/
 ___
 ## Current
-- [ ]
+- [ ] Add error checking (trys and excepts etc.)
 
 ## Hand-off
 - [ ] Add "settings" to main menu
 - [ ] Add reset password functionality
 - [ ] Fix loop in setup menu after too many failed attempts to match
 - [ ] Update README.md
-- [ ] Clean up code (Functions, comments, PEP-8, etc.)
-- [ ] Add error checking (trys and excepts etc.)
 
 ## Later
 - [ ] Add Settings menu for updating master password
@@ -43,5 +41,6 @@ ___
 - [x] Fix bug in login menu logic
 - [x] Rewrite the overview section
 - [x] Add (improve) menu for passgen and passcheck
+- [x] Clean up code (Functions, comments, PEP-8, etc.)
 
 ###### END_FILE  
