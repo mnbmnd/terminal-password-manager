@@ -15,6 +15,7 @@ ___
 - [ ] Update README.md
 
 ## Later
+- [ ] Make pip installable (TOML)
 - [ ] Add Settings menu for updating master password
 - [ ] Rename prompt to something shorter, maybe psm
 - [ ] Implement password vault storage (`passwords.json`)
