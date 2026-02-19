@@ -32,8 +32,19 @@ def section(title: str):
 
 def section_cutter():
     print("\n" + ("-" * 88))
+    
+
+def get_user_choice():
+    userOption = int(input("\nAnswer: "))
+    
+    return userOption
 
 
+def show_goodbye():
+    print("Thank you for using Passman 👋")
+
+
+# The overview section
 def overview():
     section("Overview")
     print("\nWelcome to Passman 👋")
@@ -74,12 +85,6 @@ def show_login_menu():
         attemptsRemaining -= 1
 
     return success
-
-
-def get_user_choice():
-    userOption = int(input("\nAnswer: "))
-    
-    return userOption
 
 
 def show_main_menu():
